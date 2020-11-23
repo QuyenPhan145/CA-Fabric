@@ -16,71 +16,71 @@ Organizations:
   - &OrdererOrg
     Name: OrdererOrg
     ID: OrdererOrgMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/Fabric-CA/OrdererOrg/msp
+    MSPDir: /OrdererOrg/msp
     # Policies are mandatory starting 2.x
-    Policies: &OrdererPolicies
+    Policies: &OrdererOrgPolicies
       Readers:
           Type: Signature
-          Rule: "OR('OrdererMSP.member')"
+          Rule: "OR('OrdererOrgMSP.member')"
       Writers:
           Type: Signature
-          Rule: "OR('OrdererMSP.member')"
+          Rule: "OR('OrdererOrgMSP.member')"
       Admins:
           Type: Signature
           # ONLY Admin Role can carry out administration activities
-          Rule: "OR('OrdererMSP.admin')"
+          Rule: "OR('OrdererOrgMSP.admin')"
       Endorsement:
           Type: Signature
-          Rule: "OR('OrdererMSP.member')"
+          Rule: "OR('OrdererOrgMSP.member')"
 
-  - &ThuDucOrg
-    Name: ThuDucOrg
-    ID: ThuDucMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/Fabric-CA/ThuDucOrg/msp
+  - &ThuDucHospital
+    Name: ThuDucHospital
+    ID: ThuDucHospitalMSP
+    MSPDir: /ThuDucOrg/msp
     Policies: &ThuDucPolicies
       Readers:
           Type: Signature
           # Any member can READ e.g., query
-          Rule: "OR('ThuDucMSP.member')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
       Writers:
           Type: Signature
           # Any member can WRITE e.g., submit transaction
-          Rule: "OR('ThuDucMSP.member')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
       Admins:
           Type: Signature
           # Either Acme admin OR Orderer Admin can carry out admin activities
-          Rule: "OR('ThuDucMSP.admin')"
+          Rule: "OR('ThuDucHospitalMSP.admin')"
       Endorsement:
           Type: Signature
           # Any member can act as an endorser
-          Rule: "OR('ThuDucMSP.member')"
+          Rule: "OR('ThuDucHospitalMSP.member')"
     AnchorPeers:
-      - Host: 10.102.10.229
-        Port: 7054
+      - Host: thuduchospital-peer-clusterip
+        Port: 30751
 
-  - &GoVapOrg
-    Name: GoVapOrg
-    ID: GoVapMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/Fabric-CA/GoVapOrg/msp
-    Policies: &GoVapPolicies
+  - &GoVapHospital
+    Name: GoVapHospital
+    ID: GoVapHospitalMSP
+    MSPDir: /GoVapOrg/msp
+    Policies: &GoVapHospitalPolicies
       Readers:
           Type: Signature
           # Any member
-          Rule: "OR('GoVapMSP.member')"
+          Rule: "OR('GoVapHospitalMSP.member')"
       Writers:
           Type: Signature
           # Any member
-          Rule: "OR('GoVapMSP.member')"
+          Rule: "OR('GoVapHospitalMSP.member')"
       Admins:
           Type: Signature
           # BOTH Budget Admin AND Orderer Admin needed for admin activities
-          Rule: "OR('GoVapMSP.member')"
+          Rule: "OR('GoVapHospitalMSP.member')"
       Endorsement:
           Type: Signature
-          Rule: "OR('GoVapMSP.member')"
+          Rule: "OR('GoVapHospitalMSP.member')"
     AnchorPeers:
-      - Host: 10.102.10.229
-        Port: 7055
+      - Host: govaphospital-peer-clusterip
+        Port: 30851
 
   
 
@@ -91,7 +91,7 @@ Orderer: &OrdererDefaults
 
   Addresses:
     # UPDATE THE IP ADDRESS
-    - 10.102.10.226:7053
+    - healthcare-orderer-clusterip:30750
   # Policies for Orderer
   Policies:
     Readers:
@@ -257,15 +257,15 @@ Profiles:
       Consortiums:
         OrdererOrgConsortium:
             Organizations:
-                  - <<: *ThuDucOrg
-                  - <<: *GoVapOrg
+                  - <<: *ThuDucHospital
+                  - <<: *GoVapHospital
 
       Application:
             <<: *ApplicationDefaults
 
             Organizations:
-                - <<: *ThuDucOrg
-                - <<: *GoVapOrg
+                - <<: *ThuDucHospital
+                - <<: *GoVapHospital
 
                  
 
@@ -287,3 +287,4 @@ Profiles:
 
 
   
+
