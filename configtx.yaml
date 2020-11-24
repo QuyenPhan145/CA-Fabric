@@ -16,7 +16,7 @@ Organizations:
   - &OrdererOrg
     Name: OrdererOrg
     ID: OrdererOrgMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/msp
+    MSPDir: OrdererOrg/msp
     # Policies are mandatory starting 2.x
     Policies: &OrdererOrgPolicies
       Readers:
@@ -36,7 +36,7 @@ Organizations:
   - &ThuDucHospital
     Name: ThuDucHospital
     ID: ThuDucHospitalMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/fabric-ca/ThuDucOrg/msp
+    MSPDir: ThuDucOrg/msp
     Policies: &ThuDucPolicies
       Readers:
           Type: Signature
@@ -61,7 +61,7 @@ Organizations:
   - &GoVapHospital
     Name: GoVapHospital
     ID: GoVapHospitalMSP
-    MSPDir: /home/ubuntu16/Fabric-CA/fabric-ca/GoVapOrg/msp
+    MSPDir: GoVapOrg/msp
     Policies: &GoVapHospitalPolicies
       Readers:
           Type: Signature
@@ -122,18 +122,18 @@ Orderer: &OrdererDefaults
           - Host: healthcare-orderer-clusterip
             Port: 30750
             # Same cert is being used for client and server - for higher level of security you may use different certs
-            ClientTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer1/tls-cert/cert.pem
-            ServerTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer1/tls-cert/cert.pem
+            ClientTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
 
-          - Host: healthcare-orderer2-clusterip
-            Port: 30750
-            ClientTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer2/tls-cert/cert.pem
-            ServerTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer2/tls-cert/cert.pem            
+          - Host: healthcare-orderer-2-clusterip
+            Port: 31750
+            ClientTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem            
         
-          - Host: healthcare-orderer3-clusterip
-            Port: 30750
-            ClientTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer3/tls-cert/cert.pem
-            ServerTLSCert: /home/ubuntu16/Fabric-CA/fabric-ca/OrdererOrg/orderer3/tls-cert/cert.pem   
+          - Host: healthcare-orderer-3-clusterip
+            Port: 32750
+            ClientTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem   
 
       # Options to be specified for all the etcd/raft nodes. The values here
       # are the defaults for all new channels and can be modified on a
@@ -335,4 +335,5 @@ Profiles:
 
 
   
+
 
