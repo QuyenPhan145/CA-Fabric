@@ -122,18 +122,18 @@ Orderer: &OrdererDefaults
           - Host: orderer1-ordererorg
             Port: 30750
             # Same cert is being used for client and server - for higher level of security you may use different certs
-            ClientTLSCert: OrdererOrg/orderer1/tls-cert/cert.crt
-            ServerTLSCert: OrdererOrg/orderer1/tls-cert/cert.crt
+            ClientTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer1/tls-cert/cert.pem
 
           - Host: orderer2-ordererorg
             Port: 31750
-            ClientTLSCert: OrdererOrg/orderer2/tls-cert/cert.crt
-            ServerTLSCert: OrdererOrg/orderer2/tls-cert/cert.crt            
+            ClientTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer2/tls-cert/cert.pem            
         
           - Host: orderer3-ordererorg
             Port: 32750
-            ClientTLSCert: OrdererOrg/orderer3/tls-cert/cert.crt
-            ServerTLSCert: OrdererOrg/orderer3/tls-cert/cert.crt   
+            ClientTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem
+            ServerTLSCert: OrdererOrg/orderer3/tls-cert/cert.pem   
 
       # Options to be specified for all the etcd/raft nodes. The values here
       # are the defaults for all new channels and can be modified on a
